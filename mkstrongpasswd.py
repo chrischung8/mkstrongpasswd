@@ -10,7 +10,23 @@ Password Generator
 ''')
 
 rw = RandomWords()
-count = int(input("How many words should the password contain? "))
+
+while True:
+    try:
+        count = int(input("How many words should the password contain? "))
+    except ValueError:
+        print("Not an integer. Please enter an integer.")
+        continue
+
+    if count < 0:
+        print("Please enter a positive number.")
+        continue
+
+    elif count == 0:
+        print("Please enter an integer greater than zero.")
+        continue
+    else:
+        break
 
 
 # Function to randomly generate a list of random words
@@ -48,6 +64,6 @@ password = passwd + str(number) + special_character
 xkcd_password = random_case(password)
 
 print(f"Password generated: {xkcd_password}")
-print(f"Password length: {len(password)}")
+print(f"Password length: {len(xkcd_password)}")
 pyperclip.copy(xkcd_password)
 print("Password copied to clipboard.")
